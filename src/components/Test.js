@@ -4,7 +4,7 @@ import store from '../store';
 export default function Test() {
   return (
     <div>
-    テスト
+      <audio src="mp3/Dear My Dear.mp3" controls></audio> 
     </div>
   );
 }

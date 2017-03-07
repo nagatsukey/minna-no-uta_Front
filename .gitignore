@@ -2,7 +2,10 @@
 *.orig
 /*.log
 /node_modules
-/dist
+/dist/*
+!/dist/mp3/
+/dist/mp3/*
+!/dist/mp3/.gitkeep
 /bower_components
 /*.sublime-workspace
 /scraping/html/*
