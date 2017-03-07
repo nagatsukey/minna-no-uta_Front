@@ -1,15 +1,34 @@
 import expect from 'expect'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Test from './components/Test';
+import { AppContainer } from 'react-hot-loader';
 import store from './store';
+
+function RootDOM()　{
+  const Test = require('./components/Test').default;
+  return (
+    <Test />
+  );
+}
 
 //画面更新用の関数を作成
 const render = () => {
   ReactDOM.render(
-    <Test />,
-    document.getElementById('root')
+    <AppContainer>
+      <RootDOM />
+    </AppContainer>,
+    document.getElementById('root'),
   );
+  if (module.hot) {
+    module.hot.accept('./components/Test', () => {
+      ReactDOM.render(
+        <AppContainer>
+          <RootDOM />
+        </AppContainer>,
+        document.getElementById('root'),
+      );
+    });
+  }
 }
 
 //subscribe関数に、現在のstateの状況を画面に表示する関数をセット
