@@ -1,14 +1,17 @@
-import expect from 'expect'
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
-import store from './store';
+import createStore from './store';
+
+const store = createStore();
 
 function RootDOM()　{
-  const Test = require('./components/Test').default;
-  const MinnaNoUta = require('./containers/MinnaNoUta' ).default;
+  const MinnaNoUta = require('./containers/MinnaNoUta');
   return (
-    <MinnaNoUta />
+    <Provider store={store}>
+      <MinnaNoUta />
+    </Provider>
   );
 }
 
@@ -21,10 +24,12 @@ const render = () => {
     document.getElementById('root'),
   );
   if (module.hot) {
-    module.hot.accept('./components/Test', () => {
+    module.hot.accept('./containers/MinnaNoUta', () => {
       ReactDOM.render(
         <AppContainer>
-          <RootDOM />
+          <Provider store={store}>
+            <RootDOM />
+          </Provider>
         </AppContainer>,
         document.getElementById('root'),
       );
@@ -33,7 +38,7 @@ const render = () => {
 }
 
 //subscribe関数に、現在のstateの状況を画面に表示する関数をセット
-store.subscribe(render)
+store.subscribe(render);
 
 //最初に画面を表示
 window.onload = render;
