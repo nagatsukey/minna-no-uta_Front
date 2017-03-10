@@ -6,8 +6,9 @@ import store from './store';
 
 function RootDOM()　{
   const Test = require('./components/Test').default;
+  const MinnaNoUta = require('./containers/MinnaNoUta' ).default;
   return (
-    <Test />
+    <MinnaNoUta />
   );
 }
 
