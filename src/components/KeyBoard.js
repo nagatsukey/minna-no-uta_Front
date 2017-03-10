@@ -113,7 +113,7 @@ class KeyBoard extends Component {
   }
 
   handleChangeSlideValue(value, hz) {
-     this.props.dispatch({ type: 'CHANGE_EQUILAIZER', hz, value });
+    this.props.dispatch({ type: 'CHANGE_EQUILAIZER', hz, value });
   }
 
   render() {
@@ -165,7 +165,7 @@ class KeyBoard extends Component {
             defaultValue={0}
             style={{
               height: '300px',
-              }}
+            }}
             onChange={(value) => this.handleChangeSlideValue(value, '31.25Hz')}
           />
         </div>

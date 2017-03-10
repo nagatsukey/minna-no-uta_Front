@@ -3,19 +3,19 @@ import axios from 'axios';
 
 const initialState = {
   mediums: [], // 音楽データ一覧
-   source: null,
-   equalizer: {
-      "31.25Hz": 0,
-      "62.5Hz": 0,
-      "125Hz": 0,
-      "250Hz": 0,
-      "500Hhz": 0,
-      "1kHz": 0,
-      "2kHz": 0,
-      "4kHz": 0,
-      "8kHz": 0,
-      "16kHz": 0,
-   }
+  source: null,
+  equalizer: {
+    "31.25Hz": 0,
+    "62.5Hz": 0,
+    "125Hz": 0,
+    "250Hz": 0,
+    "500Hhz": 0,
+    "1kHz": 0,
+    "2kHz": 0,
+    "4kHz": 0,
+    "8kHz": 0,
+    "16kHz": 0,
+  }
 };
 
 export default function reducer(state = initialState, action) {
@@ -32,11 +32,11 @@ export default function reducer(state = initialState, action) {
         return nextState;
       });
     case 'PUT_SOURCE_FILE':
-        return _.merge(state, { source: action.source });
-        // return nextState;
+      return _.merge(state, { source: action.source });
+      // return nextState;
     case 'CHANGE_EQUILAIZER':
-        return _.merge(state, { equalizer: {[action.hz]: action.value}});
-        // return nextState;
+      return _.merge(state, { equalizer: {[action.hz]: action.value}});
+      // return nextState;
     default:
       return state
   }
