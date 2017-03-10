@@ -3,7 +3,7 @@ const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 
 app.on('ready', () => {
-  mainWindow = new BrowserWindow({ width: 400, height: 800 });
+  mainWindow = new BrowserWindow({ width: 450, height: 800 });
   mainWindow.loadURL(`file://${__dirname}/index.html`);
   mainWindow.on('closed', () => {
     mainWindow = null;

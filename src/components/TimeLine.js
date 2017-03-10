@@ -21,6 +21,7 @@ export default class TimeLine extends Component {
         source.connect(gain);
         gain.connect(analyser);
         analyser.connect(audioContext.destination);
+        canvasRender();
       })
 
       audio.play();
@@ -39,7 +40,6 @@ export default class TimeLine extends Component {
 
         const animationId = requestAnimationFrame(canvasRender);
       }
-      canvasRender();
     }, 3000);
   }
 

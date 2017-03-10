@@ -36,7 +36,10 @@ class Body extends Component {
       >
         {this.renderAudioTag()}
         <TimeLine dispatch={this.props.dispatch} />
-        <audio id="sample" src="http://133.92.145.250:3000/uploads/medium/music/3/A_Salty_Stick.mp3" />
+        <audio
+          id="sample"
+          src="http://133.92.145.250:3000/uploads/medium/music/5/Chuunibyou_-_If_I_Had_You_-_Leather_and_Skirt.mp3"
+        />
         <KeyBoard />
       </div>
     );
