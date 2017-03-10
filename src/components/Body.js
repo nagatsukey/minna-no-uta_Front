@@ -1,6 +1,8 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TimeLine from './TimeLine';
+import KeyBoard from './KeyBoard';
 import autoBind from 'react-autobind';
 
 class Body extends Component {
@@ -14,9 +16,9 @@ class Body extends Component {
   }
 
   renderAudioTag() {
-    return this.props.mediums.map((medium, index) => (
-      <audio id="sample" key={index} src={medium.url} />
-    ))[0]
+    // return this.props.mediums.map((medium, index) => (
+    //   <audio id="sample" key={index} src={medium.url} />
+    // ));
   }
 
   render() {
@@ -32,8 +34,13 @@ class Body extends Component {
           top: '0px',
         }}
       >
-        <TimeLine dispatch={this.props.dispatch} />
         {this.renderAudioTag()}
+        <TimeLine dispatch={this.props.dispatch} />
+        <audio
+          id="sample"
+          src="http://133.92.145.250:3000/uploads/medium/music/5/Chuunibyou_-_If_I_Had_You_-_Leather_and_Skirt.mp3"
+        />
+        <KeyBoard />
       </div>
     );
   }
