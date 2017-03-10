@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TimeLine from './TimeLine';
@@ -14,9 +15,15 @@ class Body extends Component {
   }
 
   renderAudioTag() {
-    return this.props.mediums.map((medium, index) => (
-      <audio id="sample" key={index} src={medium.url} />
-    ))[0]
+    // return this.props.mediums.map((medium, index) => (
+    //   <audio id="sample" key={index} src={medium.url} />
+    // ));
+    const medium = this.props.mediums[0];
+    if (!_.isNull(medium)) {
+      try {
+        return  <audio id="sample" src={medium.url} />
+      } catch (err) {}
+    }
   }
 
   render() {
@@ -32,8 +39,8 @@ class Body extends Component {
           top: '0px',
         }}
       >
-        <TimeLine dispatch={this.props.dispatch} />
         {this.renderAudioTag()}
+        <TimeLine dispatch={this.props.dispatch} />
       </div>
     );
   }
