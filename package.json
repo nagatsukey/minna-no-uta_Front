@@ -9,7 +9,8 @@
   "scripts": {
     "start": "webpack",
     "start-dev": "node ./server.js",
-    "dev": "node ./server.js"
+    "dev": "node ./server.js",
+    "electron": "electron ./main.dev.js"
   },
   "repository": {
     "type": "git",
@@ -42,6 +43,9 @@
   "dependencies": {
     "axios": "^0.15.3",
     "babel-polyfill": "^6.23.0",
+    "css-loader": "^0.27.1",
+    "electron-prebuilt": "^1.4.13",
+    "extract-text-webpack-plugin": "^2.1.0",
     "lodash": "^4.17.4",
     "material-ui": "^0.17.0",
     "react": "^15.4.2",
@@ -50,6 +54,7 @@
     "react-hot-loader": "v3.0.0-beta.6",
     "react-redux": "^5.0.3",
     "redux": "^3.6.0",
-    "redux-logger": "^2.8.2"
+    "redux-logger": "^2.8.2",
+    "style-loader": "^0.13.2"
   }
 }

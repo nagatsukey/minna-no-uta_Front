@@ -26,16 +26,20 @@ export default class TimeLine extends Component {
       audio.play();
 
       const canvasRender = () => {
-        const spectrums = new Unit8Array(analyser.frequencyBinCount);
-        analyser.getByteFrequencyDate(spectrums);
+        if (!this.spectrums) {
+          this.spectrums = new Uint8Array(analyser.frequencyBinCount);
+        }
+        analyser.getByteFrequencyData(this.spectrums);
 
         canvasContext.clearRect(0, 0, canvas.width, canvas.height);
-        for (let i = 0, len = spectrums.length; i < len; i++) {
-          canvasContext.fillRect(i * 10, 0, 5, spectrums[i]);
+        for (let i = 0, len = this.spectrums.length; i < len; i++) {
+          canvasContext.fillStyle = '#49ff2c';
+          canvasContext.fillRect(i * 10, canvas.height - this.spectrums[i], 5, this.spectrums[i]);
         }
 
         const animationId = requestAnimationFrame(canvasRender);
       }
+      canvasRender();
     }, 3000);
   }
 
@@ -44,7 +48,7 @@ export default class TimeLine extends Component {
       <div
         style={{
           backgroundColor: '#424242',
-          height: '30%',
+          height: '250px',
           width: '100%',
           marginTop: '40px',
           position: 'fixed',
@@ -52,7 +56,7 @@ export default class TimeLine extends Component {
           top: '0px',
         }}
       >
-        <canvas id="timeline" />
+        <canvas id="timeline" height="250px" />
       </div>
     );
   }
