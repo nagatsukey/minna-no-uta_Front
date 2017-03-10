@@ -35,7 +35,7 @@ class Body extends Component {
         }}
       >
         {this.renderAudioTag()}
-        <TimeLine dispatch={this.props.dispatch} />
+        <TimeLine dispatch={this.props.dispatch} equalizer={this.props.equalizer} />
         <audio
           id="sample"
           src="http://133.92.145.250:3000/uploads/medium/music/5/Chuunibyou_-_If_I_Had_You_-_Leather_and_Skirt.mp3"
@@ -48,6 +48,7 @@ class Body extends Component {
 
 export default connect(
   state => ({
-    mediums: state.mediums
+    mediums: state.mediums,
+    equalizer: state.equalizer,
   })
 )(Body);

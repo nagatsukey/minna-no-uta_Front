@@ -6,17 +6,18 @@ import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import downloader from '../utils/downloader';
 import Slider, { Range } from 'rc-slider';
+import { connect } from 'react-redux';
 
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 const audioContext = new AudioContext;
 
 const marks = {
-  0: <strong>0</strong>,
-  100: {
+  "-40": <strong>-40</strong>,
+  40: {
     style: {
       color: 'red',
     },
-    label: <strong>100</strong>,
+    label: <strong>40</strong>,
   },
 };
 
@@ -35,7 +36,7 @@ downloader(kaneurl, (se) => (buffers.kane = se));
 downloader(bouryokuurl, (se) => (buffers.bouryoku = se));
 downloader(sexurl, (se) => (buffers.sex = se));
 
-export default class KeyBoard extends Component {
+class KeyBoard extends Component {
   constructor(props) {
     super(props);
     autoBind(this);
@@ -111,6 +112,10 @@ export default class KeyBoard extends Component {
     source.start(0);
   }
 
+  handleChangeSlideValue(value, hz) {
+    this.props.dispatch({ type: 'CHANGE_EQUILAIZER', hz, value });
+  }
+
   render() {
     return (
       <div>
@@ -152,82 +157,160 @@ export default class KeyBoard extends Component {
         <div style={sliderStyle} >
           <Slider
             vertical
-            min={0}
-            step={10}
+            min={-40}
+            max={40}
+            step={1}
             marks={marks}
             included={false}
-            defaultValue={50}
+            defaultValue={0}
             style={{
               height: '300px',
             }}
+            onChange={(value) => this.handleChangeSlideValue(value, '31.25Hz')}
           />
         </div>
         <div style={sliderStyle} >
           <Slider
             vertical
-            min={0}
-            step={10}
+            min={-40}
+            max={40}
+            step={1}
             marks={marks}
             included={false}
-            defaultValue={50}
+            defaultValue={0}
             style={{
               height: '300px',
             }}
+            onChange={(value) => this.handleChangeSlideValue(value, '62.5Hz')}
           />
         </div>
         <div style={sliderStyle} >
           <Slider
             vertical
-            min={0}
-            step={10}
+            min={-40}
+            max={40}
+            step={1}
             marks={marks}
             included={false}
-            defaultValue={50}
+            defaultValue={0}
             style={{
               height: '300px',
             }}
+            onChange={(value) => this.handleChangeSlideValue(value, '125Hz')}
           />
         </div>
         <div style={sliderStyle} >
           <Slider
             vertical
-            min={0}
-            step={10}
+            min={-40}
+            max={40}
+            step={1}
             marks={marks}
             included={false}
-            defaultValue={50}
+            defaultValue={0}
             style={{
               height: '300px',
             }}
+            onChange={(value) => this.handleChangeSlideValue(value, '250Hz')}
           />
         </div>
         <div style={sliderStyle} >
           <Slider
             vertical
-            min={0}
+            min={-40}
+            max={40}
             step={10}
             marks={marks}
             included={false}
-            defaultValue={50}
+            defaultValue={0}
             style={{
               height: '300px',
             }}
+            onChange={(value) => this.handleChangeSlideValue(value, '500Hz')}
           />
         </div>
         <div style={sliderStyle} >
           <Slider
             vertical
-            min={0}
-            step={10}
+            min={-40}
+            max={40}
+            step={1}
             marks={marks}
             included={false}
-            defaultValue={50}
+            defaultValue={0}
             style={{
               height: '300px',
             }}
+            onChange={(value) => this.handleChangeSlideValue(value, '1kHz')}
+          />
+        </div>
+        <div style={sliderStyle} >
+          <Slider
+            vertical
+            min={-40}
+            max={40}
+            step={1}
+            marks={marks}
+            included={false}
+            defaultValue={0}
+            style={{
+              height: '300px',
+            }}
+            onChange={(value) => this.handleChangeSlideValue(value, '2kHz')}
+          />
+        </div>
+        <div style={sliderStyle} >
+          <Slider
+            vertical
+            min={-40}
+            max={40}
+            step={1}
+            marks={marks}
+            included={false}
+            defaultValue={0}
+            style={{
+              height: '300px',
+            }}
+            onChange={(value) => this.handleChangeSlideValue(value, '4kHz')}
+          />
+        </div>
+        <div style={sliderStyle} >
+          <Slider
+            vertical
+            min={-40}
+            max={40}
+            step={1}
+            marks={marks}
+            included={false}
+            defaultValue={0}
+            style={{
+              height: '300px',
+            }}
+            onChange={(value) => this.handleChangeSlideValue(value, '8kHz')}
+          />
+        </div>
+        <div style={sliderStyle} >
+          <Slider
+            vertical
+            min={-40}
+            max={40}
+            step={1}
+            marks={marks}
+            included={false}
+            defaultValue={0}
+            style={{
+              height: '300px',
+            }}
+            onChange={(value) => this.handleChangeSlideValue(value, '16kHz')}
           />
         </div>
       </div>
     );
   }
 }
+
+export default connect(
+  state => ({
+    source: state.source
+  })
+)(KeyBoard);
